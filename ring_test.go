@@ -51,3 +51,20 @@ func TestParallelAdd(t *testing.T) {
 		t.Error("Incorrect sort order for all ring entries")
 	}
 }
+
+func TestEmptyAll(t *testing.T) {
+	ring := New(15)
+	all := ring.All()
+	length := len(all)
+	if length != 0 {
+		t.Error("Non-empty array returned for empty ring")
+	}
+}
+
+func TestEmptyLast(t *testing.T) {
+	ring := New(15)
+	last := ring.Last()
+	if last != nil {
+		t.Error("Non-nil last value returne for empty ring")
+	}
+}

@@ -46,6 +46,10 @@ func (r *Ring) All() []interface{} {
 	r.lock.RLock()
 	defer r.lock.RUnlock()
 
+	if r.currentIdx == -1 {
+		return []interface{}{}
+	}
+
 	length := len(r.values)
 	var copy = make([]interface{}, length)
 	idx := r.currentIdx
@@ -67,6 +71,10 @@ func (r *Ring) All() []interface{} {
 func (r *Ring) Last() interface{} {
 	r.lock.RLock()
 	defer r.lock.RUnlock()
+
+	if r.currentIdx == -1 {
+		return nil
+	}
 
 	return r.values[r.currentIdx]
 }
