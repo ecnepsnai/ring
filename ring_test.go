@@ -52,6 +52,16 @@ func TestParallelAdd(t *testing.T) {
 	}
 }
 
+func TestAll(t *testing.T) {
+	ring := New(10)
+	ring.Add(1)
+	objects := ring.All()
+	count := len(objects)
+	if count != 1 {
+		t.Errorf("Unexpected number of objects returned. Expected %d got %d", 1, count)
+	}
+}
+
 func TestEmptyAll(t *testing.T) {
 	ring := New(15)
 	all := ring.All()

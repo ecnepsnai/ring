@@ -50,11 +50,17 @@ func (r *Ring) All() []interface{} {
 		return []interface{}{}
 	}
 
-	length := len(r.values)
+	var length int
+	for i, obj := range r.values {
+		if obj != nil {
+			length = i + 1
+		}
+	}
+
 	var copy = make([]interface{}, length)
 	idx := r.currentIdx
 	got := 0
-	for got < r.maximumIdx+1 {
+	for got < length {
 		copy[idx] = r.values[idx]
 		if idx == 0 {
 			idx = r.maximumIdx
