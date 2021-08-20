@@ -1,3 +1,3 @@
 module github.com/ecnepsnai/ring
 
-go 1.16
+go 1.17
